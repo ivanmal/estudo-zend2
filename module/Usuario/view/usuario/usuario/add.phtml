@@ -1,0 +1,48 @@
+<?php
+$flash = $this->flashMessenger();
+echo $flash->renderCurrent('error', array('alert', 'alert-dismissible', 'alert-danger'));
+//echo $flash->render('info',    array('alert', 'alert-dismissible', 'alert-info'));
+//echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+echo $flash->renderCurrent('success', array('alert', 'alert-dismissible', 'alert-success'));
+
+$title = 'Adicionar novo Usuário';
+$this->headTitle($title);
+?>
+
+<div class="row">
+    <h1><?= $this->escapeHtml($title) ?></h1>
+
+    <?php
+    $form = $this->form;
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    ?>
+    <table>
+        <tr>
+            <td><?= $this->formlabel($form->get('real_name')); ?></td>
+            <td><?= $this->formElement($form->get('real_name')); ?>
+                <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('real_name')); ?></span></td>
+        </tr>
+        <tr>
+            <td><?= $this->formlabel($form->get('username')); ?></td>
+            <td><?= $this->formElement($form->get('username')); ?>
+                <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('username')); ?></span></td>
+        </tr>
+        <tr>
+            <td><?= $this->formlabel($form->get('password')); ?></td>
+            <td><?= $this->formElement($form->get('password')); ?>
+                <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('password')); ?></span></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <?php
+                echo $this->formRow($form->get('loginCsrf'));
+                echo $this->formElement($form->get('submit'));
+                ?>
+            </td>
+        </tr>
+    </table>
+    <?= $this->form()->closeTag($form); ?>
+
+</div>

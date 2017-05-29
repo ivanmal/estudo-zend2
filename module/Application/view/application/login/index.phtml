@@ -1,0 +1,35 @@
+<?php
+$flash = $this->flashMessenger();
+echo $flash->render('error',   array('alert', 'alert-dismissible', 'alert-danger'));
+//echo $flash->render('info',    array('alert', 'alert-dismissible', 'alert-info'));
+//echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+?>
+
+<?php
+$form = $this->loginForm;
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<table>
+    <tr>
+        <td><?=$this->formlabel($form->get('username')); ?></td>
+        <td><?=$this->formElement($form->get('username')); ?>
+            <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('username')); ?></span></td>
+    </tr>
+    <tr>
+        <td><?=$this->formlabel($form->get('password')); ?></td>
+        <td><?=$this->formElement($form->get('password')); ?>
+            <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('password')); ?></span></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>
+            <?php
+            echo $this->formRow($form->get('loginCsrf'));
+            echo $this->formElement($form->get('submit'));
+            ?>
+        </td>
+    </tr>
+</table>
+<?=$this->form()->closeTag($form);?>
